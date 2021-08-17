@@ -1,12 +1,12 @@
 import React ,{useState} from "react";
 
-function CategoryFilter({CATEGORIES ,handletSelectCategory}) {
+function CategoryFilter({CATEGORIES ,selectCategory,setSelectCategory}) {
  
-  const [btn , setBtn]= useState('');
+  // const [btn , setBtn]= useState('');
  
   function handleClick(e){
-    setBtn(e.target.value)  
-    handletSelectCategory(e.target.value)
+    setSelectCategory(e.target.value)  
+    // handletSelectCategory(e.target.value)
   }
   
   return (
@@ -16,7 +16,7 @@ function CategoryFilter({CATEGORIES ,handletSelectCategory}) {
   CATEGORIES.map((category) => (
     <button 
     key={category} 
-    className={ btn === category  ? "selected":null}
+    className={ selectCategory === category  ? "selected":null}
     onClick={handleClick} 
     value={category} 
     > {category} </button>

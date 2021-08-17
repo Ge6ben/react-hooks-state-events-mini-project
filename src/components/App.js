@@ -29,7 +29,9 @@ function App() {
 
       <CategoryFilter
         CATEGORIES={CATEGORIES}
-        handletSelectCategory={handletSelectCategory}
+        selectedCategory={selectCategory}
+        setSelectCategory={setSelectCategory}
+
       />
 
       <NewTaskForm
