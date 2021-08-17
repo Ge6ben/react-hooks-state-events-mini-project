@@ -8,21 +8,24 @@ import { CATEGORIES, TASKS } from "../data";
 console.log("Here's the data you're working with");
 console.log({ CATEGORIES, TASKS });
 function App() {
+
   const [selectCategory, setSelectCategory] = useState("All");
   const [tasks, setTask] = useState(TASKS);
 
-  function handletSelectCategory(category) {
-    console.log(category);
-    setSelectCategory(category);
-    console.log(category);
-  }
+  // function handletSelectCategory(category) {
+  //   console.log(category);
+  //   setSelectCategory(category);
+  //   console.log(category);
+  // }
 
   const filterTask = tasks.filter(
     (task) => selectCategory === "All" || task.category === selectCategory
   );
 
-  function onTaskFormSubmit(task) {
+  function addTask(task) {
     setTask([...tasks, task]);
+    console.log("============")
+    console.log(tasks)
   }
 
   function deleteTask(deleteItem) {
@@ -34,17 +37,17 @@ function App() {
       <h2>My tasks</h2>
 
       <CategoryFilter
-        CATEGORIES={CATEGORIES}
+        categories={CATEGORIES}
         selectCategory={selectCategory}
         setSelectCategory={setSelectCategory}
       />
 
       <NewTaskForm
-        CATEGORIES={CATEGORIES.filter((item) => item !== 'All')}
-        onTaskFormSubmit={onTaskFormSubmit}
+        categories={CATEGORIES.filter((item) => item !== 'All')}
+        onTaskFormSubmit={addTask}
       />
 
-      <TaskList TASKS={filterTask} deleteTask={deleteTask}/>
+      <TaskList tasks={filterTask} deleteTask={deleteTask}/>
     </div>
   );
 }
