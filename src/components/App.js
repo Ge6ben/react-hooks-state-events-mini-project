@@ -12,15 +12,21 @@ function App() {
   const [tasks, setTask] = useState(TASKS);
 
   function handletSelectCategory(category) {
+    console.log(category);
     setSelectCategory(category);
+    console.log(category);
   }
 
   const filterTask = tasks.filter(
     (task) => selectCategory === "All" || task.category === selectCategory
   );
 
-  function addHnadleNewTask(task) {
+  function onTaskFormSubmit(task) {
     setTask([...tasks, task]);
+  }
+
+  function deleteTask(deleteItem) {
+    setTask( tasks.filter((item) => item.text !== deleteItem))
   }
 
   return (
@@ -29,18 +35,16 @@ function App() {
 
       <CategoryFilter
         CATEGORIES={CATEGORIES}
-        selectedCategory={selectCategory}
+        selectCategory={selectCategory}
         setSelectCategory={setSelectCategory}
-
       />
 
       <NewTaskForm
-        CATEGORIES={CATEGORIES}
-        addHnadleNewTask={addHnadleNewTask}
-        handletSelectCategory={handletSelectCategory}
+        CATEGORIES={CATEGORIES.filter((item) => item !== 'All')}
+        onTaskFormSubmit={onTaskFormSubmit}
       />
 
-      <TaskList TASKS={filterTask} />
+      <TaskList TASKS={filterTask} deleteTask={deleteTask}/>
     </div>
   );
 }
