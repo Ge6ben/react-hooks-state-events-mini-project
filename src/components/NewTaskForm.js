@@ -4,37 +4,30 @@ function NewTaskForm({ categories, onTaskFormSubmit }) {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("Code");
 
-  function onSubmitTask(e) {
+  function onSubmit(e) {
     e.preventDefault();
     onTaskFormSubmit({
       text,
       category,
     });
-
-    setText("");
-    setCategory("Code");
   }
 
   return (
-    <form className="new-task-form" onSubmit={onSubmitTask}>
+    <form className="new-task-form" onSubmit={onSubmit}>
       <label>
         Details
         <input
           type="text"
           name="text"
-          value={text}
           onChange={(e) => setText(e.target.value)}
+          value={text}
         />
       </label>
       <label>
         Category
-        <select
-          name="category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          {categories.map((cate) => (
-            <option key={cate}>{cate}</option>
+        <select onChange={(e) => setCategory(e.target.value)} value={category}>
+          {categories.map((category) => (
+            <option key={category}>{category}</option>
           ))}
         </select>
       </label>
